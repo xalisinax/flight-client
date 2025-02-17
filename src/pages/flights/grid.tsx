@@ -23,6 +23,23 @@ export function Grid() {
       () => {}
     );
   };
+
+  const unreserve = (id: string) => {
+    DialogUtil.confirm(
+      "Unreserve booking",
+      "You are about to unreserve your booking.Are you sure?",
+      "Yes",
+      "No",
+      () => {
+        FlightService.unreserve(id)
+          .then(() => DialogUtil.alert("Done!", DialogType.succuss))
+          .catch((error) => {
+            DialogUtil.alert(error.response?.data?.detail, DialogType.error);
+          });
+      },
+      () => {}
+    );
+  };
   const columns = [
     { label: "ID", accessor: "id" },
     { label: "Origin", accessor: "origin" },
@@ -40,7 +57,10 @@ export function Grid() {
           >
             <FaBook />
           </span>
-          <span className="text-red-600 cursor-pointer">
+          <span
+            className="text-red-600 cursor-pointer"
+            onClick={() => unreserve(row.id)}
+          >
             <FaTrash />
           </span>
         </div>

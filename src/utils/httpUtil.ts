@@ -56,6 +56,12 @@ class HttpUtil {
     return data;
   }
 
+  public async delete(url: string): Promise<any> {
+    const { data } = await this._axiosInstance.delete(url);
+
+    return data;
+  }
+
   private async getToken(): Promise<string> {
     const user = await AuthService.getUser();
     if (user && user.access_token) return user.access_token;

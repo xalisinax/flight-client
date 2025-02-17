@@ -1,0 +1,11 @@
+services:
+  ui:
+    build:
+      dockerfile: ./DockerFile
+    ports:
+      - "5173:5173"
+    networks:
+      - flight
+
+networks:
+  flight:

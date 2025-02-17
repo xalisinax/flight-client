@@ -6,6 +6,7 @@ class FlightService {
   private readonly getUrl = "v1/flights";
   private readonly reserveUrl = "v1/flights/{id}/reserve";
   private readonly mineUrl = "v1/flights/mine";
+  private readonly unreserveUrl = "v1/flights/{id}/mine";
 
   create(model: CreateFlightRequest) {
     return HttpUtil.post(this.createUrl, model);
@@ -23,6 +24,12 @@ class FlightService {
 
   mine() {
     return HttpUtil.get(this.mineUrl);
+  }
+
+  unreserve(id: string) {
+    const url = this.unreserveUrl.replace("{id}", id);
+
+    return HttpUtil.delete(url);
   }
 }
 
