@@ -11,8 +11,9 @@ class AuthService {
       response_type: Settings.VITE_OIDC_RESPONSE_TYPE,
       redirect_uri: Settings.VITE_OIDC_REDIRECT_URI,
       post_logout_redirect_uri: Settings.VITE_OIDC_POST_LOGOUT_REDIRECT_URI,
-      scope: Settings.VITE_OIDC_SCOPES,
+      scope: "openid profile",
       response_mode: Settings.VITE_OIDC_RESPONSE_MODE as "query",
+      loadUserInfo: true,
     });
   }
 
